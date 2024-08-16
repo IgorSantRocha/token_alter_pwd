@@ -16,7 +16,7 @@ class UserTokenAlterPwd(models.Model):
         valor = str(self).id+str(self.crieate_uid)
         return valor
 
-    exmpira_em = fields.Datetime(
+    expira_em = fields.Datetime(
         string='Expira em', required=True,
         default=_get_prazo_token)
 
@@ -26,6 +26,9 @@ class UserTokenAlterPwd(models.Model):
         # translate=True,
         size=6,
         Default='000000'
+    )
+    res_users_id = fields.Many2one(
+        'res.users',  # nome da tabela relacionada
     )
 
     uid = fields.Integer(
