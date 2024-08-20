@@ -27,19 +27,14 @@ class UserTokenAlterPwd(models.Model):
         size=6,
         Default='000000'
     )
-    res_users_id = fields.Many2one(
+    # res_users_id = fields.Many2one(
+    #    'res.users',  # nome da tabela relacionada
+    # )
+    res_users_id = fields.One2many(
         'res.users',  # nome da tabela relacionada
-    )
-
-    uid = fields.Integer(
-        # ,groups='São níveis de acesso'
-        # Ao usar o compute, definir como "store" false, pois não precisa gravar essa informaçao no banco. Já que ela é sempre recalculada
-        # Usado para chamar funções que inserem os valores nesse campo
-        string='ID do usuário que solicitou o token',
-        default=0,
-        help='Vou armazenar o id do usuário que solicitou o token para validar depois',
-        required=True,
-        readonly=True,
+        'id',
+        string='UserID',
+        groups='base.group_user'
     )
 
     token_usado = fields.Boolean(
