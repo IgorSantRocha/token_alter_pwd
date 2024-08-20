@@ -30,12 +30,19 @@ class UserTokenAlterPwd(models.Model):
     # res_users_id = fields.Many2one(
     #    'res.users',  # nome da tabela relacionada
     # )
-    res_users_id = fields.One2many(
+    res_users_id = fields.Many2one(
+        'res.users',
+        'User',
+        store=True,
+        readonly=False,
+        auto_join=True
+    )
+    '''res_users_id = fields.Many2one(
         'res.users',  # nome da tabela relacionada
         'id',
         string='UserID',
         groups='base.group_user'
-    )
+    )'''
 
     token_usado = fields.Boolean(
         string='Token ativo?',
